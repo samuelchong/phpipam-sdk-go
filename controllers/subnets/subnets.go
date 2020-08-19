@@ -4,6 +4,7 @@ package subnets
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/samuelchong/phpipam-sdk-go/controllers/addresses"
 	"github.com/samuelchong/phpipam-sdk-go/phpipam"
@@ -90,6 +91,10 @@ type Subnet struct {
 	// enabled, this map will be nil on GETs and POSTs and PATCHes with this
 	// field set will fail. Use the explicit custom field functions instead.
 	CustomFields map[string]interface{} `json:"custom_fields,omitempty"`
+
+	// Todo: Identify element in json payload
+	Gateway string
+	GatewayID string
 }
 
 // Controller is the base client for the Subnets controller.
@@ -180,7 +185,9 @@ func (c *Controller) GetSubnetCustomFields(id int) (out map[string]interface{}, 
 // grow, or renumber a subnet, you need to use other methods that are currently
 // not implemented in this SDK. See the API spec for more details.
 func (c *Controller) UpdateSubnet(in Subnet) (message string, err error) {
+	log.Println("XXX UpdateSubnet before")
 	err = c.SendRequest("PATCH", "/subnets/", &in, &message)
+	log.Printf("XXX UpdateSubnet after %s", err)
 	return
 }
 
