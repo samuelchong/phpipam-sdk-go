@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/paybyphone/phpipam-sdk-go?status.svg)](https://godoc.org/github.com/paybyphone/phpipam-sdk-go)
+[![GoDoc](https://godoc.org/github.com/samuelchong/phpipam-sdk-go?status.svg)](https://godoc.org/github.com/samuelchong/phpipam-sdk-go)
 
 # phpipam-sdk-go - Partial SDK for PHPIPAM
 
@@ -15,7 +15,7 @@ provider to help insert data gathered from AWS and beyond.
 
 See the [GoDoc][2] for the SDK usage details.
 
-[2]: https://godoc.org/github.com/paybyphone/phpipam-sdk-go
+[2]: https://godoc.org/github.com/samuelchong/phpipam-sdk-go
 
 ## A Note on Custom Fields
 
@@ -39,7 +39,7 @@ be present.
 ## License
 
 ```
-Copyright 2017 PayByPhone Technologies, Inc.
+Copyright 2017 samuelchong Technologies, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

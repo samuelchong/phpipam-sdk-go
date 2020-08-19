@@ -5,10 +5,10 @@ package subnets
 import (
 	"fmt"
 
-	"github.com/paybyphone/phpipam-sdk-go/controllers/addresses"
-	"github.com/paybyphone/phpipam-sdk-go/phpipam"
-	"github.com/paybyphone/phpipam-sdk-go/phpipam/client"
-	"github.com/paybyphone/phpipam-sdk-go/phpipam/session"
+	"github.com/samuelchong/phpipam-sdk-go/controllers/addresses"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam/client"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam/session"
 )
 
 // Subnet represents a PHPIPAM subnet.
@@ -126,6 +126,18 @@ func (c *Controller) GetSubnetByID(id int) (out Subnet, err error) {
 // return that subnet only.
 func (c *Controller) GetSubnetsByCIDR(cidr string) (out []Subnet, err error) {
 	err = c.SendRequest("GET", fmt.Sprintf("/subnets/cidr/%s/", cidr), &struct{}{}, &out)
+	return
+}
+
+// Create new child subnet inside subnet with specified mask.
+func (c *Controller) CreateFirstFreeSubnet(id, mask int) (out string, err error) {
+	err = c.SendRequest("POST", fmt.Sprintf("/subnets/%d/first_subnet/%d", id, mask),&struct{}{}, &out)
+	return
+}
+
+// Get first free/available subnet from master subnet
+func (c *Controller) GetFirstFreeSubnet(id, mask int) (out string, err error) {
+	err = c.SendRequest("GET", fmt.Sprintf("/subnets/%d/first_subnet/%d", id, mask),&struct{}{}, &out)
 	return
 }
 

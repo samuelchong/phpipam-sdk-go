@@ -5,9 +5,9 @@ package addresses
 import (
 	"fmt"
 
-	"github.com/paybyphone/phpipam-sdk-go/phpipam"
-	"github.com/paybyphone/phpipam-sdk-go/phpipam/client"
-	"github.com/paybyphone/phpipam-sdk-go/phpipam/session"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam/client"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam/session"
 )
 
 // Address represents an IP address resource within PHPIPAM.
@@ -144,3 +144,10 @@ func (c *Controller) DeleteAddress(id int, RemoveDNS phpipam.BoolIntString) (mes
 	err = c.SendRequest("DELETE", fmt.Sprintf("/addresses/%d/", id), &in, &message)
 	return
 }
+
+// Create first free address
+func (c *Controller) CreateFirstFreeAddress(subnetId int)  (ipAddr string, err error) {
+	err = c.SendRequest("GET", fmt.Sprintf("/addresses/first_free/%d/", subnetId), &struct{}{}, &ipAddr)
+	return
+}
+
